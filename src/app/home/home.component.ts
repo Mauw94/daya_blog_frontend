@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
     this.slideIndex = 1;
     this.slideIndexHotspot = 0;
     this.showSlides(this.slideIndex);
+    this.hotspotSlideShow();
     setInterval(() => {
       this.hotspotSlideShow();
     }, 2000);
@@ -25,6 +26,7 @@ export class HomeComponent implements OnInit {
 
   plusSlides(i): void {
     this.showSlides(this.slideIndex += i);
+    console.log('clicked next slide');
   }
 
   currentSlide(n): void {
