@@ -3,17 +3,17 @@
         <!-- Full-width images with number and caption text -->
         <div class="mySlides">
             <div class="numbertext">1 / 3</div>
-            <img src="assets/ny-bridge.jpg">
+            <img class="slideshow-img" src="assets/ny-bridge.jpg">
         </div>
 
         <div class="mySlides">
             <div class="numbertext">2 / 3</div>
-            <img src="assets/ny-skyline.jpg">
+            <img class="slideshow-img" src="assets/ny-skyline.jpg">
         </div>
 
         <div class="mySlides">
             <div class="numbertext">3 / 3</div>
-            <img src="assets/mail-icon.jpg">
+            <img class="slideshow-img" src="assets/mail-icon.jpg">
         </div>
 
         <!-- Next and previous buttons -->
@@ -26,5 +26,44 @@
         <span class="dot" (click)="currentSlide(1)"></span>
         <span class="dot" (click)="currentSlide(2)"></span>
         <span class="dot" (click)="currentSlide(3)"></span>
+    </div>
+
+    <div class="row three-middle-section">
+        <div class="col-sm" id="story-section">
+            <p>Lees mijn verhaal</p>
+            <a href="/story">
+                <img id="story-img" src="assets/fb-icon.png">
+            </a>
+            <br>
+        </div>
+        <div class="col-sm" id="hotspot-section">
+            <div class="slideshow-hotspot-container">
+                <p>Hotspots in NY!</p>
+                <div class="hotspotSlide">
+                    <a href="/hotspots">
+                        <img class="hotspot-img" src="assets/fb-icon.png">
+                    </a>
+                </div>
+                <div class="hotspotSlide">
+                    <a href="/hotspots">
+                        <img class="hotspot-img" src="assets/ny-skyline.jpg">
+                    </a>
+                </div>
+                <div class="hotspotSlide">
+                    <a href="/hotspots">
+                        <img class="hotspot-img" src="assets/ny-bridge.jpg">
+                    </a>
+                </div>
+                <div class="hotspotSlide">
+                    <a href="/hotspots">
+                        <img class="hotspot-img" src="assets/youtube-icon.png">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm" id="about-section">
+            <p>Over mij</p>
+            <a href="/about"><img id="about-img" src="assets/youtube-icon.png"></a>
+        </div>
     </div>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from '../../../node_modules/rxjs';
 
 @Component({
   selector: 'app-home',
@@ -8,13 +9,18 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   slideIndex = 0;
+  slideIndexHotspot = 0;
+
   constructor() {
   }
 
   ngOnInit() {
     this.slideIndex = 1;
+    this.slideIndexHotspot = 0;
     this.showSlides(this.slideIndex);
-    console.log(this.slideIndex);
+    setInterval(() => {
+      this.hotspotSlideShow();
+    }, 2000);
   }
 
   plusSlides(i): void {
@@ -42,5 +48,15 @@ export class HomeComponent implements OnInit {
     (slides[this.slideIndex - 1] as HTMLElement).style.display = 'block';
     dots[this.slideIndex - 1].className += ' active';
 
+  }
+
+  hotspotSlideShow() {
+    const slides = document.getElementsByClassName('hotspotSlide');
+    for (let i = 0; i < slides.length; i++) {
+      (slides[i] as HTMLElement).style.display = 'none';
+    }
+    this.slideIndexHotspot++;
+    if (this.slideIndexHotspot > slides.length) { this.slideIndexHotspot = 1; }
+    (slides[this.slideIndexHotspot - 1] as HTMLElement).style.display = 'block';
   }
 }
