@@ -12,6 +12,7 @@ import { BlogService } from './services/blog.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { BlogObjComponent } from './blog-obj/blog-obj.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { BlogObjComponent } from './blog-obj/blog-obj.component';
     AboutComponent,
     StoryComponent,
     BlogFormComponent,
-    BlogObjComponent
+    BlogObjComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

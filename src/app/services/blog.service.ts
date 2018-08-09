@@ -19,14 +19,23 @@ export class BlogService {
   }
 
   saveBlog(blog: any) {
-    return this.http.post(Constants.getLocalHostURL() + 'blogs', blog);
+    return this.http.post(Constants.getLocalHostURL() + 'blogs', blog).pipe(map((res: Response) => {
+      if (res) {
+        if (res.status === 200) {
+          return 'Succes';
+        }
+      } else {
+        return 'An error occured';
+      }
+    }));
   }
 
   parseData(json: any): BlogModel[] {
     return Object.keys(json).map(key => {
       const blog = new BlogModel(
         json[key].content,
-        json[key].date
+        json[key].date,
+        json[key].title
       );
       return blog;
     });
