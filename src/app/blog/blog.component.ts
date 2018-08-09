@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BlogService } from '../services/blog.service';
+import { BlogModel } from '../models/blog';
 
 @Component({
   selector: 'app-blog',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlogComponent implements OnInit {
 
-  constructor() { }
+  blogList: BlogModel[] = [];
+
+  constructor(private blogService: BlogService) { }
 
   ngOnInit() {
+    this.fetchBlogList();
+  }
+
+  fetchBlogList(): void {
+    this.blogService.getBlogs().subscribe((data) => {
+      if (data != null) {
+        this.blogList = data;
+      }
+    });
   }
 
 }

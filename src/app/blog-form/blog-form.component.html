@@ -1,0 +1,8 @@
+<form [formGroup]="form" (ngSubmit)="submit(form)">
+  <label>Blog text: </label>
+  <input type="text" name="content" formControlName="content">
+  <label>Data: </label>
+  <input type="date" name="date" formControlName="date">
+  <label>Submit this bitch</label>
+  <input type="submit" name="submit">
+</form>
