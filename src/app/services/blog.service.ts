@@ -15,11 +15,11 @@ export class BlogService {
   constructor(private http: HttpClient) { }
 
   getBlogs(): Observable<BlogModel[]> {
-    return this.http.get(Constants.getLocalHostURL() + 'blogs').pipe(map(res => this.parseData(res)));
+    return this.http.get(Constants.getAPiUrl() + 'blogs').pipe(map(res => this.parseData(res)));
   }
 
   saveBlog(blog: any) {
-    return this.http.post(Constants.getLocalHostURL() + 'blogs', blog).pipe(map((res: Response) => {
+    return this.http.post(Constants.getAPiUrl() + 'blogs', blog).pipe(map((res: Response) => {
       if (res) {
         if (res.status === 200) {
           return 'Succes';
