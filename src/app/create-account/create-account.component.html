@@ -1,9 +1,6 @@
 <div class="container">
   <form [formGroup]="form">
     <div class="form-group">
-      <img src="assets/login-icon2.png" id="login-img">
-    </div>
-    <div class="form-group">
       <label for="email">E-mail: </label>
       <input type="email" id="email" formControlName="email" class="form-control">
     </div>
@@ -12,9 +9,11 @@
       <input type="password" id="password" formControlName="password" class="form-control">
     </div>
     <div class="form-group">
-      <input type="button" id="submit" (click)="login(form)" value="Submit" class="btn btn-info">
+      <label for="confirmpassword">Confirm password: </label>
+      <input type="confirmpassword" id="confirmpassword" formControlName="confirmpassword" class="form-control">
+    </div>
+    <div class="form-group">
+      <input type="submit" value="Create Account" class="btn btn-info" (click)="create(form)">
     </div>
   </form>
-
-  <p>No account yet? <a routerLink='/create'>Click here!</a></p>
 </div>

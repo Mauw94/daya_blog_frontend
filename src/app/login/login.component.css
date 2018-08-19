@@ -1,0 +1,13 @@
+.container {
+    margin-top: 50px;
+    max-width: 15%;
+    text-align: center;
+}
+
+#login-img {
+    width: 70px;
+    height: 70px;
+}
+a:link {
+    text-decoration: none;
+}

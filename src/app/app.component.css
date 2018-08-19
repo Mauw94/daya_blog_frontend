@@ -21,10 +21,14 @@
 }
 #login {
     font-size: 18px;
-    margin-left: 40%;
+    margin-left: 48%;
+    text-decoration: none;
 }
 a {
     margin: 2px;
+}
+a:link {
+    text-decoration: none;
 }
 
 @media only screen and (max-width: 1700px) {

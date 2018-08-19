@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   slideIndex = 0;
   slideIndexHotspot = 0;
-
+  slideInterval;
   constructor() {
   }
 
@@ -19,9 +19,15 @@ export class HomeComponent implements OnInit {
     this.slideIndexHotspot = 0;
     this.showSlides(this.slideIndex);
     this.hotspotSlideShow();
-    setInterval(() => {
+    this.slideInterval = setInterval(() => {
       this.hotspotSlideShow();
     }, 2000);
+  }
+
+  ngOnDestroy(): void {
+    if (this.slideInterval) {
+      clearInterval(this.slideInterval);
+    }
   }
 
   plusSlides(i): void {
