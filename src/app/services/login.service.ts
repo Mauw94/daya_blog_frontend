@@ -45,6 +45,16 @@ export class LoginService {
     }), catchError(this.onSignUpError));
   }
 
+  logout() {
+    const httpOptions = {
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': 'gettokenfromstorage'
+      })
+    };
+    return this.http.post(Constants.getAPiUrl() + 'signout', {}, httpOptions);
+  }
+
   onError(res: Response): Observable<any> {
     const error = `Error ${res.status}: ${res.statusText}`;
     console.log(error);

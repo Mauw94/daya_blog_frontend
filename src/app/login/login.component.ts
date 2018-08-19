@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '../../../node_modules/@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginService } from '../services/login.service';
 import { User } from '../models/user';
-import { Router } from '../../../node_modules/@angular/router';
+import { Router } from '@angular/router';
+import { RouteHelperService } from '../services/route-helper.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   error: String = '';
 
-  constructor(private loginService: LoginService, private router: Router) { }
+  constructor(private loginService: LoginService, private router: Router,
+    private routeHelper: RouteHelperService) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -32,7 +34,8 @@ export class LoginComponent implements OnInit {
     this.loginService.login(user).subscribe(result => {
       if (result === true) {
         this.error = '';
-        this.router.navigate(['/home']);
+        const route = this.routeHelper.getSavedRoute();
+        this.router.navigate([route]);
       }
     }, (err) => {
       if (err = 'Unauthorized') {

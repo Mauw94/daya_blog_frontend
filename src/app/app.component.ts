@@ -1,17 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { LoginService } from './services/login.service';
+import { RouteHelperService } from './services/route-helper.service';
+import { Router } from '../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-  title = 'frontend';
+export class AppComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  title = 'frontend';
+  loggedInUser = false;
+  checking;
+
+  constructor(private loginService: LoginService, private router: Router, private routeHelper: RouteHelperService) { }
 
   ngOnInit() {
     this.changeActiveClass();
+    this.checking = setInterval(() => {
+      this.checkForLoggedInUser();
+    }, 500);
+  }
+
+  ngOnDestroy() {
+    if (this.checking) {
+      clearInterval(this.checking);
+    }
   }
 
   changeActiveClass(): void {
@@ -25,5 +40,23 @@ export class AppComponent implements OnInit {
         this.className += ' active';
       });
     }
+  }
+
+  checkForLoggedInUser(): void {
+    if (localStorage.getItem('currentUser') != null) {
+      this.loggedInUser = true;
+    } else {
+      this.loggedInUser = false;
+    }
+  }
+
+  rememberRoute() {
+    const route = this.router.url;
+    this.routeHelper.saveLastRoute(route);
+  }
+
+  logout(): void {
+    this.loginService.logout();
+    localStorage.removeItem('currentUser');
   }
 }

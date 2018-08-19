@@ -28,10 +28,16 @@
           </div>
         </li>
       </ul>
-      <div id='login'>
-        <button class="btn btn-default btn-sm" routerLink="/login">
+      <div *ngIf="!loggedInUser" id='login'>
+        <button class="btn btn-default btn-sm" routerLink="/login" (click)="rememberRoute()">
           <span style="font-family: 'Times New Roman', Times, serif">Login </span>
           <img id="login-icon" src='assets/login-icon.png'>
+        </button>
+      </div>
+      <div *ngIf="loggedInUser" id="login">
+        <button class="btn btn-default btn-sm" (click)="logout()">
+          Logout
+          <img id="logout-icon" src="assets/logout-icon.png">
         </button>
       </div>
     </div>
