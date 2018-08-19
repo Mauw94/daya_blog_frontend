@@ -1,4 +1,12 @@
 .container {
     margin-top: 50px;
-    width: 50%;
+    width: 20%;
+    text-align: center;
+}
+#create-img {
+    width: 70px;
+    height: 70px;
+}
+.error {
+    margin: 20px;
 }

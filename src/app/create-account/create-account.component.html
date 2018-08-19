@@ -1,4 +1,7 @@
 <div class="container">
+  <div class="form-group">
+    <img src="assets/login-icon2.png" id="create-img">
+  </div>
   <form [formGroup]="form">
     <div class="form-group">
       <label for="email">E-mail: </label>
@@ -10,10 +13,13 @@
     </div>
     <div class="form-group">
       <label for="confirmpassword">Confirm password: </label>
-      <input type="confirmpassword" id="confirmpassword" formControlName="confirmpassword" class="form-control">
+      <input type="password" id="confirmpassword" formControlName="confirmpassword" class="form-control">
     </div>
     <div class="form-group">
       <input type="submit" value="Create Account" class="btn btn-info" (click)="create(form)">
     </div>
   </form>
+  <div class="error alert-danger">
+    {{error}}
+  </div>
 </div>

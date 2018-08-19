@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '../../../node_modules/@angular/forms';
 import { LoginService } from '../services/login.service';
 import { User } from '../models/user';
+import { Router } from '../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   error: String = '';
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -31,11 +32,11 @@ export class LoginComponent implements OnInit {
     this.loginService.login(user).subscribe(result => {
       if (result === true) {
         this.error = '';
+        this.router.navigate(['/home']);
       }
     }, (err) => {
       if (err = 'Unauthorized') {
         this.error = 'E-mail or password is incorrect.';
-        console.log('E-mail or password is incorrect.');
       }
     });
   }

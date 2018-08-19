@@ -1,12 +1,15 @@
 .container {
     margin-top: 50px;
-    max-width: 15%;
+    max-width: 20%;
     text-align: center;
 }
 
 #login-img {
     width: 70px;
     height: 70px;
+}
+.error {
+    margin: 20px;
 }
 a:link {
     text-decoration: none;
