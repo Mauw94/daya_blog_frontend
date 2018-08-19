@@ -1,11 +1,14 @@
 .navbar {
     font-family: 'Times New Roman';    
-    font-size: 24px;
+    font-size: 20px;
     text-align: center;
 }
 .navbar-brand {
     text-align: left;
-    width: 38%;
+    width: 36%;
+}
+.navbar-left-text {
+    font-size: 15px;
 }
 .centered {
     margin: 0 auto;
