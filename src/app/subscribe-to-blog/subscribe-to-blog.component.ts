@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '../../../node_modules/@angular/router';
+import { Router } from '@angular/router';
 import { RouteHelperService } from '../services/route-helper.service';
 import { LoginService } from '../services/login.service';
-import { FormGroup, FormControl, Validators } from '../../../node_modules/@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CheckLoginUserService } from '../services/check-login-user';
+import { EmailSaverService } from '../services/email-saver.service';
 
 @Component({
   selector: 'app-subscribe-to-blog',
@@ -15,9 +16,11 @@ export class SubscribeToBlogComponent implements OnInit, OnDestroy {
   form: FormGroup;
   user_is_logged_in = false;
   checking;
+  success: String = '';
 
   constructor(private router: Router, private routeHelper: RouteHelperService,
-    private loginService: LoginService, private checkLoginStatus: CheckLoginUserService) { }
+    private loginService: LoginService, private checkLoginStatus: CheckLoginUserService,
+    private emailSaver: EmailSaverService) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -32,6 +35,16 @@ export class SubscribeToBlogComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.checking) {
       clearInterval(this.checking);
+    }
+  }
+
+  saveEmail(form) {
+    const email = form.value.email;
+    this.emailSaver.addEmail(email);
+    const notEmptyList = this.emailSaver.checkIfTheEmailListHasItems();
+    if (notEmptyList) {
+      this.success = 'Subscribed successfully.';
+      form.reset();
     }
   }
 

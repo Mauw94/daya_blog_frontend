@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { LoginService } from './services/login.service';
-import { Router } from '../../node_modules/@angular/router';
+import { Router } from '@angular/router';
 import { CheckLoginUserService } from './services/check-login-user';
 
 @Component({
