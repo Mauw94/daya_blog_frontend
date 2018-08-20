@@ -17,6 +17,7 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { SubscribeToBlogComponent } from './subscribe-to-blog/subscribe-to-blog.component';
 import { AuthService } from './services/auth.service';
 import { TokenInterceptor } from './auth/token.interceptor';
+import { FileSelectDirective } from '../../node_modules/ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { TokenInterceptor } from './auth/token.interceptor';
     BlogObjComponent,
     LoginComponent,
     CreateAccountComponent,
-    SubscribeToBlogComponent
+    SubscribeToBlogComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,
