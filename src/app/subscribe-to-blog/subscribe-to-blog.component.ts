@@ -5,6 +5,7 @@ import { LoginService } from '../services/login.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CheckLoginUserService } from '../services/check-login-user';
 import { EmailSaverService } from '../services/email-saver.service';
+import { EmailService } from '../services/email.service';
 
 @Component({
   selector: 'app-subscribe-to-blog',
@@ -17,10 +18,13 @@ export class SubscribeToBlogComponent implements OnInit, OnDestroy {
   user_is_logged_in = false;
   checking;
   success: String = '';
+  data;
+  error;
 
   constructor(private router: Router, private routeHelper: RouteHelperService,
     private loginService: LoginService, private checkLoginStatus: CheckLoginUserService,
-    private emailSaver: EmailSaverService) { }
+    private emailSaver: EmailSaverService,
+    private emailService: EmailService) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -40,12 +44,13 @@ export class SubscribeToBlogComponent implements OnInit, OnDestroy {
 
   saveEmail(form) {
     const email = form.value.email;
-    this.emailSaver.addEmail(email);
-    const notEmptyList = this.emailSaver.checkIfTheEmailListHasItems();
-    if (notEmptyList) {
-      this.success = 'Subscribed successfully.';
-      form.reset();
-    }
+    const emailToSave = this.emailSaver.addEmail(email);
+    console.log(emailToSave);
+    this.emailService.saveEmail(emailToSave).subscribe(
+      (data) => this.data = data,
+      (err) => this.error = err);
+    this.success = 'Subscribed successfully.';
+    form.reset();
   }
 
   rememberRoute() {

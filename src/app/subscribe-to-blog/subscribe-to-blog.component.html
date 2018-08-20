@@ -9,17 +9,16 @@
       </div>
     </div>
   </form>
-  <div class="sign">
-    <div *ngIf="!user_is_logged_in" id='login'>
+  <div class="sign form-group row">
+    <div *ngIf="!user_is_logged_in">
       <label style="margin-right: 3px">If you're an admin </label>
       <button class="btn btn-secondary btn-sm" routerLink="/login" (click)="rememberRoute()">
         <span>Login </span>
         <img id="login-icon" src='assets/login-icon.png'>
       </button>
     </div>
-    <div *ngIf="user_is_logged_in" id="login">
-      <button class="btn btn-secondary btn-sm" (click)="logout()">
-        Logout
+    <div *ngIf="user_is_logged_in">
+      <button class="btn btn-secondary btn-sm" (click)="logout()">Logout
         <img id="logout-icon" src="assets/logout-icon.png">
       </button>
     </div>

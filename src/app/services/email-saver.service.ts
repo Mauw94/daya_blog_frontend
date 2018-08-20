@@ -1,35 +1,33 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Constants } from './constants';
-import { Observable } from 'rxjs';
+import { EmailModel } from '../models/email';
+import { formatDate } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmailSaverService {
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
-  emailList = [];
+  today = new Date();
+  jstoday;
+  email: any;
 
-  addEmail(email: String): void {
-    this.emailList.push(email);
-    this.saveEmailOnTheServer(email);
+  addEmail(email: string) {
+    this.jstoday = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss a', 'en-EU', '+0200');
+    const emailToSave: EmailModel = new EmailModel(email, this.jstoday);
+    return emailToSave;
   }
 
-  showEmailList(): String[] {
-    return this.emailList;
+  returnEmail() {
+    return this.email;
   }
 
-  checkIfTheEmailListHasItems(): boolean {
-    if (this.emailList != null) {
+  checkIfEmailListIsNotEmpty(): boolean {
+    if (this.email != null) {
       return true;
     } else {
       return false;
     }
-  }
-
-  private saveEmailOnTheServer(email) {
-    return this.http.post(Constants.getAPiUrl() + 'saveEmail', { email: email });
   }
 }
