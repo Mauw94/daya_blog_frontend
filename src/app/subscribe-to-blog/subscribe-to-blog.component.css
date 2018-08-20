@@ -1,0 +1,12 @@
+.container {
+    margin-top: 50px;
+    width: 30%;
+}
+#login-icon {
+    width: 18px;
+    height: 18px;
+}
+#logout-icon {
+    width: 22px;
+    height: 22px;
+}

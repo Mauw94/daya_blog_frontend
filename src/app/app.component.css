@@ -18,15 +18,11 @@
     margin: 0 auto;
     width: 100%;
 }
-#login-icon {
+#subscribe-icon {
     width: 18px;
     height: 18px;
 }
-#logout-icon {
-    width: 22px;
-    height: 22px;
-}
-#login {
+#subscribe {
     font-size: 18px;
     margin-left: 48%;
     text-decoration: none;

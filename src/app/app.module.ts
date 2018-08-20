@@ -14,6 +14,7 @@ import { HttpModule } from '@angular/http';
 import { BlogObjComponent } from './blog-obj/blog-obj.component';
 import { LoginComponent } from './login/login.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
+import { SubscribeToBlogComponent } from './subscribe-to-blog/subscribe-to-blog.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CreateAccountComponent } from './create-account/create-account.componen
     BlogFormComponent,
     BlogObjComponent,
     LoginComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    SubscribeToBlogComponent
   ],
   imports: [
     BrowserModule,

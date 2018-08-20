@@ -34,8 +34,8 @@ export class LoginComponent implements OnInit {
     this.loginService.login(user).subscribe(result => {
       if (result === true) {
         this.error = '';
-        const route = this.routeHelper.getSavedRoute();
-        this.router.navigate([route]);
+        // const route = this.routeHelper.getSavedRoute();
+        this.router.navigate(['/home']);
       }
     }, (err) => {
       if (err = 'Unauthorized') {

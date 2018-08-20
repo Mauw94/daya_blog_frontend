@@ -10,3 +10,8 @@
 .error {
     margin: 20px;
 }
+input {
+    text-align: center;
+    display: inline-block;
+    margin: 5px;
+}

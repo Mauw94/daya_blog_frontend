@@ -1,7 +1,7 @@
 <div class="centered">
   <nav id="nav-bar" class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-    <a *ngIf="!loggedInUser" class="navbar-brand navbar-left-text" href="#">daniqueisis♥</a>
-    <a *ngIf="loggedInUser" class="navbar-brand navbar-left-text" href="#">Welcome, Daya♥</a>
+    <a *ngIf="!user_is_logged_in" class="navbar-brand navbar-left-text" href="#">daniqueisis♥</a>
+    <a *ngIf="user_is_logged_in" class="navbar-brand navbar-left-text" href="#">Welcome, Daya♥</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
       aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -17,7 +17,7 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/about">About</a>
         </li>
-        <li *ngIf="loggedInUser" class="nav-item">
+        <li *ngIf="user_is_logged_in" class="nav-item">
           <a class="nav-link" routerLink="/postblog">Post</a>
         </li>
         <li class="nav-item dropdown">
@@ -32,16 +32,10 @@
           </div>
         </li>
       </ul>
-      <div *ngIf="!loggedInUser" id='login'>
-        <button class="btn btn-default btn-sm" routerLink="/login" (click)="rememberRoute()">
-          <span style="font-family: 'Times New Roman', Times, serif">Login </span>
-          <img id="login-icon" src='assets/login-icon.png'>
-        </button>
-      </div>
-      <div *ngIf="loggedInUser" id="login">
-        <button class="btn btn-default btn-sm" (click)="logout()">
-          Logout
-          <img id="logout-icon" src="assets/logout-icon.png">
+      <div id="subscribe">
+        <button class="btn btn-default btn-sm" routerLink="/subscribe">
+          <span style="font-family: 'Times New Roman', Times, serif">Subscribe </span>
+          <img id="subscribe-icon" src='assets/login-icon2.png'>
         </button>
       </div>
     </div>
