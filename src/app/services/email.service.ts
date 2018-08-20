@@ -12,7 +12,6 @@ export class EmailService {
 
   saveEmail(email: any) {
     return this.http.post(Constants.getAPiUrl() + 'emails', email).pipe(map((res: Response) => {
-      console.log('HALLLO?');
       if (res) {
         if (res.status === 200) {
           return 'Succes';
