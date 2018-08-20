@@ -9,12 +9,14 @@ import { AboutComponent } from './about/about.component';
 import { StoryComponent } from './story/story.component';
 import { BlogFormComponent } from './blog-form/blog-form.component';
 import { BlogService } from './services/blog.service';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { BlogObjComponent } from './blog-obj/blog-obj.component';
 import { LoginComponent } from './login/login.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { SubscribeToBlogComponent } from './subscribe-to-blog/subscribe-to-blog.component';
+import { AuthService } from './services/auth.service';
+import { TokenInterceptor } from './auth/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,11 @@ import { SubscribeToBlogComponent } from './subscribe-to-blog/subscribe-to-blog.
     HttpClientModule,
     HttpModule
   ],
-  providers: [BlogService],
+  providers: [BlogService, AuthService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
