@@ -1,4 +1,20 @@
 .container {
     margin-top: 50px;
-    width: 30%;
+    width: 50%;
+}
+input.ng-invalid:not(.ng-pristine) {
+	border-left: 5px solid #f1c40f;
+	color: #f1c40f;
+}
+.uploadList{
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.card{
+    background-color: white;
+    box-shadow:0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+    color:black;
+    margin: 20px;
+    padding: 10px;
 }
