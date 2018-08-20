@@ -1,7 +1,7 @@
 <div class="container">
   <form [formGroup]="form">
     <div class="form-group row">
-      <label for="email">Subscribe now: </label>
+      <label for="email"> Subscribe now: </label>
       <input type="email" class="form-control" formControlName="email" placeholder="E-mail">
       <input type="submit" value="Subscribe" class="btn btn-warning btn-sm" (click)="saveEmail(form)">
       <div class="alert-warning" style="margin: 5px">
@@ -11,14 +11,14 @@
   </form>
   <div class="sign form-group row">
     <div *ngIf="!user_is_logged_in">
-      <label style="margin-right: 3px">If you're an admin </label>
-      <button class="btn btn-secondary btn-sm" routerLink="/login" (click)="rememberRoute()">
+      <label style="margin-right: 3px; margin-top: 15px;">If you're an admin </label>
+      <button class="btn btn-secondary btn-sm log" routerLink="/login" (click)="rememberRoute()">
         <span>Login </span>
         <img id="login-icon" src='assets/login-icon.png'>
       </button>
     </div>
     <div *ngIf="user_is_logged_in">
-      <button class="btn btn-secondary btn-sm" (click)="logout()">Logout
+      <button class="btn btn-secondary btn-sm log" (click)="logout()">Logout
         <img id="logout-icon" src="assets/logout-icon.png">
       </button>
     </div>

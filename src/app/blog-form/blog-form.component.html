@@ -1,5 +1,6 @@
 <div class="container">
-  <form [formGroup]="form" (ngSubmit)="submit(form)">
+  <form [formGroup]="form" (ngSubmit)="submit(form)" class="card">
+    <h4>Post new blog</h4>
     <div class="form-group">
       <label for="blog-date">Date: </label>
       <input id="blog-date" class="form-control" type="date" name="date" formControlName="date">
@@ -15,7 +16,7 @@
     </div>
     <div class="form-group">
       <label for="blog-button"></label>
-      <input id="blog-button" class="btn btn-primary" type="submit" name="submit" value="submit">
+      <input id="blog-button" class="btn btn-primary" type="submit" name="submit" value="Submit">
     </div>
     <div *ngIf='submitted'>
       <p>Submitted succesfully</p>
@@ -47,7 +48,7 @@
                     <div *ngIf="uploader.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</div>
                   </div>
                   <div class="col-sm-3">
-                    <button type="button" class="btn btn-dark btn-sm" (click)="item.upload()">Upload</button>
+                    <button type="button" class="btn btn-primary btn-sm" (click)="item.upload()">Upload</button>
                     <button type="button" class="btn btn-danger btn-sm" (click)="item.remove()">Cancel</button>
                   </div>
                 </div>
