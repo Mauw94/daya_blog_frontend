@@ -55,10 +55,10 @@ export class SubscribeToBlogComponent implements OnInit, OnDestroy {
     }
     const email = this.form.value.email;
     const emailToSave = this.emailSaver.addEmail(email);
-    console.log(emailToSave);
     this.emailService.saveEmail(emailToSave).subscribe(
       (data) => this.data = data,
       (err) => this.error = err);
+    this.form.controls.email.setValue('');
     this.success = 'Subscribed successfully.';
     // this.form.reset();
   }

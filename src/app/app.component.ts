@@ -13,7 +13,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   title = 'frontend';
   user_is_logged_in = false;
-  checking;
+  checking_user_log_in;
 
   constructor(private loginService: LoginService, private router: Router,
     private checkLoginStatus: CheckLoginUserService,
@@ -22,14 +22,14 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.changeActiveClass();
     setInterval(() => {
-      this.checking = this.checkLoginStatus.checkIfUserIsLoggedIn();
+      this.checking_user_log_in = this.checkLoginStatus.checkIfUserIsLoggedIn();
       this.user_is_logged_in = this.checkLoginStatus.returnCheckLoginStatus();
     }, 100);
   }
 
   ngOnDestroy() {
-    if (this.checking) {
-      clearInterval(this.checking);
+    if (this.checking_user_log_in) {
+      clearInterval(this.checking_user_log_in);
     }
   }
 
