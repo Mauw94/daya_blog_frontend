@@ -17,8 +17,8 @@
         <li class="nav-item">
           <a class="nav-link" (click)="saveRouteSnapshot()" routerLink="/about">About</a>
         </li>
-        <li *ngIf="user_is_logged_in" class="nav-item">
-          <a class="nav-link" (click)="saveRouteSnapshot()" routerLink="/postblog">Post</a>
+        <li class="nav-item">
+          <a *ngIf="user_is_logged_in" class="nav-link" (click)="saveRouteSnapshot()" routerLink="/postblog">Post</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
