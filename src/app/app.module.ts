@@ -18,6 +18,7 @@ import { SubscribeToBlogComponent } from './subscribe-to-blog/subscribe-to-blog.
 import { AuthService } from './services/auth.service';
 import { TokenInterceptor } from './auth/token.interceptor';
 import { FileSelectDirective } from '../../node_modules/ng2-file-upload';
+import { AuthGuard } from './services/guard.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { FileSelectDirective } from '../../node_modules/ng2-file-upload';
     HttpClientModule,
     HttpModule
   ],
-  providers: [BlogService, AuthService, {
+  providers: [BlogService, AuthService, AuthGuard, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true

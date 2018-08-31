@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { BlogFormComponent } from './blog-form/blog-form.component';
 import { SubscribeToBlogComponent } from './subscribe-to-blog/subscribe-to-blog.component';
+import { AuthGuard } from './services/guard.service';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -17,7 +18,7 @@ const routes: Routes = [
     { path: 'story', component: StoryComponent },
     { path: 'login', component: LoginComponent },
     { path: 'create', component: CreateAccountComponent },
-    { path: 'postblog', component: BlogFormComponent },
+    { path: 'postblog', component: BlogFormComponent, canActivate: [AuthGuard] },
     { path: 'subscribe', component: SubscribeToBlogComponent }
 ];
 

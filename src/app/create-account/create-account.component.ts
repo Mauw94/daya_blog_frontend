@@ -17,28 +17,33 @@ export class CreateAccountComponent implements OnInit {
   matchingPasswords = false;
   accountCreation = false;
   error: String = '';
+  submitted = false;
 
   constructor(private loginService: LoginService) { }
 
   ngOnInit() {
     this.form = new FormGroup({
-      'email': new FormControl(null, [Validators.required]),
+      'email': new FormControl('', [Validators.required, Validators.email]),
       'password': new FormControl(null, [Validators.required]),
       'confirmpassword': new FormControl(null, [Validators.required])
     });
   }
 
-  create(form): void {
+  onSubmit(): void {
+    this.submitted = true;
+    if (this.form.invalid) {
+      return;
+    }
     this.error = '';
     this.matchingPasswords = true;
-    this.email = form.value.email;
-    this.password = form.value.password;
-    this.confirmpassword = form.value.confirmpassword;
+    this.email = this.form.value.email;
+    this.password = this.form.value.password;
+    this.confirmpassword = this.form.value.confirmpassword;
     if (this.checkPasswords(this.password, this.confirmpassword)) {
       const user: User = new User(this.email, this.password);
       this.loginService.create(user).subscribe(res => {
         this.accountCreation = true;
-        form.reset();
+        this.form.reset();
       }, (err) => {
         if (err = 'EmailInUse') {
           this.accountCreation = false;
@@ -46,7 +51,10 @@ export class CreateAccountComponent implements OnInit {
         }
       });
     }
-    console.log(this.email + '' + this.password + '' + this.confirmpassword);
+  }
+
+  get f() {
+    return this.form.controls;
   }
 
   private checkPasswords(pass, confirmpassword) {

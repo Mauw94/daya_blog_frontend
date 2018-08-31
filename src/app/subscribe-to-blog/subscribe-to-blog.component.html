@@ -1,12 +1,18 @@
 <div class="container">
-  <form [formGroup]="form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form-group row">
       <label for="email"> Subscribe now: </label>
-      <input type="email" class="form-control" formControlName="email" placeholder="E-mail">
-      <input type="submit" value="Subscribe" class="btn btn-warning btn-sm" (click)="saveEmail(form)">
+      <input type="text" class="form-control" formControlName="email" placeholder="E-mail" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+        <div *ngIf="f.email.errors.required">Email is required</div>
+        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+      </div>
       <div class="alert-warning" style="margin: 5px">
         {{success}}
       </div>
+    </div>
+    <div class="form-group row">
+      <button [disabled]="loading" class="btn btn-warning">Sumit</button>
     </div>
   </form>
   <div class="sign form-group row">

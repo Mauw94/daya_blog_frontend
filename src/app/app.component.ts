@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { LoginService } from './services/login.service';
 import { Router } from '@angular/router';
 import { CheckLoginUserService } from './services/check-login-user';
+import { RouteHelperService } from './services/route-helper.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ export class AppComponent implements OnInit, OnDestroy {
   checking;
 
   constructor(private loginService: LoginService, private router: Router,
-    private checkLoginStatus: CheckLoginUserService) { }
+    private checkLoginStatus: CheckLoginUserService,
+    private routeSnapShot: RouteHelperService) { }
 
   ngOnInit() {
     this.changeActiveClass();
@@ -29,6 +31,10 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.checking) {
       clearInterval(this.checking);
     }
+  }
+
+  saveRouteSnapshot(): void {
+    this.routeSnapShot.saveRoute(this.routeSnapShot.getCurrentRoute());
   }
 
   changeActiveClass(): void {

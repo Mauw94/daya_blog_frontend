@@ -14,7 +14,7 @@ export class RouteHelperService {
     return this.router.url;
   }
 
-  saveLastRoute(route: String) {
+  saveRoute(route: String) {
     this.route = route;
   }
 

@@ -15,6 +15,7 @@ import { EmailService } from '../services/email.service';
 export class SubscribeToBlogComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
+  submitted = false;
   user_is_logged_in = false;
   checking;
   success: String = '';
@@ -28,7 +29,7 @@ export class SubscribeToBlogComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.form = new FormGroup({
-      'email': new FormControl(null, [Validators.required])
+      'email': new FormControl('', [Validators.required, Validators.email])
     });
     setInterval(() => {
       this.checking = this.checkLoginStatus.checkIfUserIsLoggedIn();
@@ -42,20 +43,29 @@ export class SubscribeToBlogComponent implements OnInit, OnDestroy {
     }
   }
 
-  saveEmail(form) {
-    const email = form.value.email;
+  get f() {
+    return this.form.controls;
+  }
+
+  onSubmit() {
+    this.submitted = true;
+    this.success = null;
+    if (this.form.invalid) {
+      return;
+    }
+    const email = this.form.value.email;
     const emailToSave = this.emailSaver.addEmail(email);
     console.log(emailToSave);
     this.emailService.saveEmail(emailToSave).subscribe(
       (data) => this.data = data,
       (err) => this.error = err);
     this.success = 'Subscribed successfully.';
-    form.reset();
+    // this.form.reset();
   }
 
   rememberRoute() {
     const route = this.router.url;
-    this.routeHelper.saveLastRoute(route);
+    this.routeHelper.saveRoute(route);
   }
 
   logout() {

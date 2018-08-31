@@ -2,10 +2,15 @@
     font-family: 'Times New Roman';    
     font-size: 20px;
     text-align: center;
+    width: 100%;
+}
+.navbar-collapse {
+    width: 100%;
+    margin-left: 15%; 
 }
 .navbar-brand {
     text-align: left;
-    width: 35%;
+    width: 33%;
 }
 .navbar-left-text {
     font-size: 15px;
@@ -24,7 +29,8 @@
 }
 #subscribe {
     font-size: 18px;
-    margin-left: 58%;
+    text-align: right;
+    margin-left: 50%;
     text-decoration: none;
 }
 a {
