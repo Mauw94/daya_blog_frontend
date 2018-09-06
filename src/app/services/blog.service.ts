@@ -30,12 +30,17 @@ export class BlogService {
     }));
   }
 
+  uploadImage(formDate: FormData) {
+    return this.http.post(Constants.getAPiUrl() + 'blogimage', formDate);
+  }
+
   parseData(json: any): BlogModel[] {
     return Object.keys(json).map(key => {
       const blog = new BlogModel(
         json[key].content,
         json[key].date,
-        json[key].title
+        json[key].title,
+        Constants.getAPiUrl() + 'uploads/' + json[key].image
       );
       return blog;
     });

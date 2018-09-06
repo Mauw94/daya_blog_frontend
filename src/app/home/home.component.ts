@@ -55,7 +55,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
     (slides[this.slideIndex - 1] as HTMLElement).style.display = 'block';
     dots[this.slideIndex - 1].className += ' active';
-
   }
 
   hotspotSlideShow() {
