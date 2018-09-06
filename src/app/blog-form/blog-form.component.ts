@@ -5,8 +5,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
 import { Constants } from '../services/constants';
 
-const uri = 'http://localhost:3000/file/upload';
-
 @Component({
   selector: 'app-blog-form',
   templateUrl: './blog-form.component.html',
@@ -18,7 +16,7 @@ export class BlogFormComponent implements OnInit {
   submitted: boolean;
   data: any = null;
   error: String = '';
-  uploader: FileUploader = new FileUploader({ url: uri });
+  uploader: FileUploader = new FileUploader({ url: Constants.getFileUploadUri() });
   fileToUpload: File = null;
   fileName: string = null;
   imagepath: string = null;
@@ -32,7 +30,6 @@ export class BlogFormComponent implements OnInit {
       if (this.fileName != null) {
         this.uploaded = true;
         this.imagepath = Constants.getAPiUrl() + 'uploads/' + this.fileName;
-        console.log(this.imagepath);
       }
       this.attachmentList.push(JSON.parse(response));
     };
@@ -51,18 +48,19 @@ export class BlogFormComponent implements OnInit {
     this.fileToUpload = files.item(0);
   }
 
-  // submitFile(fileForm) {
-  //   const formData: FormData = new FormData();
-  //   formData.append('file', this.fileToUpload, this.fileToUpload.name);
-  //   this.blogService.uploadImage(formData).subscribe(data => {
-  //     console.log('data send back??'  + data);
-  //     this.fileName = data['fileName'];
-  //   }, error => {
-  //     console.log(error);
-  //   });
-  // }
-
   submit(form): void {
+    if (this.fileName == null) {
+      if (confirm('No image has been uploaded, are you sure you want to post this blog?')) {
+        this.postBlog(form);
+      } else {
+        return;
+      }
+    }
+    this.error = null;
+    this.postBlog(form);
+  }
+
+  private postBlog(form) {
     if (form.value.content && form.value.date && form.value.title != null) {
       const blog: BlogModel = new BlogModel(
         form.value.content,

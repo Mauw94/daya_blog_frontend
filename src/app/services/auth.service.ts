@@ -22,11 +22,10 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     if (localStorage.getItem('currentUser') != null) {
-      this.loggedIn = true;
-      return this.loggedIn;
+      console.log('logged in');
+      return true;
     } else {
-      this.loggedIn = false;
-      return this.loggedIn;
+      return false;
     }
   }
 }
