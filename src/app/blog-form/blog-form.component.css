@@ -1,7 +1,6 @@
 .container {
     margin-top: 50px;
     width: 50%;
-    font-family: 'Times New Roman';
 }
 input.ng-invalid:not(.ng-pristine) {
 	border-left: 5px solid #f1c40f;

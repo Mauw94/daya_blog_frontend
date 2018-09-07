@@ -1,6 +1,6 @@
 <div class="container">
 
-  <form [formGroup]="form" (ngSubmit)="submit(form)" class="card">
+  <form [formGroup]="form" (ngSubmit)="updateBlogContent(form)" class="card">
     <h4>Edit blog</h4>
     <div class="form-group">
       <label for="blog-date">Date: </label>
@@ -25,8 +25,45 @@
   </form>
 
   <div *ngFor="let img of images" class="image">
-    <img [src]='img' alt='no image found' width="150px" height="100px">
-    <button class="btn-primary btn-sm">Change</button>
-    <button class="btn-primary btn-sm">Delete</button>
+    <div>
+      <img [src]='img' alt='no image found' width="150px" height="100px">
+    </div>
+    <div>
+      <button class="btn btn-danger btn-sm edit" (click)="deleteImage(img)">Delete</button>
+    </div>
+  </div>
+  <div class="form-group">
+    <form #fileForm="ngForm" (ngSubmit)="submitFile(fileForm)">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-12">
+          <div class="row card">
+            <div class="col-sm-12">
+              <h4>Add new pictures</h4>
+              <div id="fileSelector">
+                <input type="file" name="fileUpload" id="fileUpload" multiple ng2FileSelect [uploader]="uploader">
+              </div>
+              <div>
+                <div class="row uploadList" *ngFor="let item of uploader.queue">
+                  <div class="col-sm-3">{{item.file.name}}</div>
+                  <div class="col-sm-3">
+                    <div class="progress">
+                      <div class="progress-bar bg-success" [ngStyle]="{'width':item.progress+'%'}"></div>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <button type="button" class="btn btn-primary btn-sm" (click)="item.upload()">Upload</button>
+                    <button type="button" class="btn btn-danger btn-sm" (click)="item.remove()">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div *ngIf='uploaded'>
+        <p>Updated succesfully</p>
+      </div>
   </div>
 </div>

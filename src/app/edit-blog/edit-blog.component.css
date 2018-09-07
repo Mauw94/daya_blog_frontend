@@ -1,7 +1,6 @@
 .container {
     margin-top: 50px;
     width: 50%;
-    font-family: 'Times New Roman';
 }
 input.ng-invalid:not(.ng-pristine) {
 	border-left: 5px solid #f1c40f;
@@ -21,5 +20,11 @@ input.ng-invalid:not(.ng-pristine) {
 }
 .image {
     display: inline-block;
+    margin: 10px auto;
+    width: 30%;
+}
+.edit {
+    text-align: center;
+    float: none;
     margin: 5px;
 }

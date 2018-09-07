@@ -31,7 +31,8 @@ export class BlogService {
   }
 
   updateBlog(blog: any) {
-    return this.http.post(Constants.getAPiUrl() + 'updateblog', blog);
+    return this.http.post(Constants.getAPiUrl() + 'updateblog', blog).pipe(map(res =>
+      console.log(res)));
   }
 
   uploadImage(formDate: FormData) {
@@ -41,6 +42,11 @@ export class BlogService {
   getBlogById(id: any): Observable<BlogModel> {
     return this.http.get(Constants.getAPiUrl() + 'blogs/' + id).pipe(map(res =>
       this.parseSingleObjectData(res)));
+  }
+
+  deleteBlogById(blog: any) {
+    return this.http.post(Constants.getAPiUrl() + 'deleteblog', blog).pipe(map(res =>
+      console.log(res)));
   }
 
   parseData(json: any): BlogModel[] {
