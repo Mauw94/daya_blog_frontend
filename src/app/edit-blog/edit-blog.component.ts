@@ -30,6 +30,7 @@ export class EditBlogComponent implements OnInit {
       this.blog.image.push(image['uploadname']);
       if (this.blog.image != null) {
         this.uploaded = true;
+        this.getImageURLs(this.blog.image);
         this.updateBlogImages();
       }
     };
@@ -64,7 +65,7 @@ export class EditBlogComponent implements OnInit {
       this.uploaded = true;
     });
     if (this.deleted) {
-      location.reload();
+      //
     }
   }
 
@@ -89,6 +90,7 @@ export class EditBlogComponent implements OnInit {
       const image = img.substring(30, img.length);
       this.blog.image.splice(this.blog.image.indexOf(image), 1);
       this.deleted = true;
+      this.getImageURLs(this.blog.image);
       this.updateBlogImages();
     } else {
       return;
@@ -102,7 +104,7 @@ export class EditBlogComponent implements OnInit {
           this.blog = data;
           this.loading = false;
         }
-        this.getImageURLs();
+        this.getImageURLs(this.blog.image);
         this.setFormValues();
       });
   }
@@ -113,9 +115,10 @@ export class EditBlogComponent implements OnInit {
     this.form.controls.content.setValue(this.blog.content);
   }
 
-  getImageURLs(): void {
-    for (let i = 0; i < this.blog.image.length; i++) {
-      this.images.push(Constants.getFileUploadLocation() + this.blog.image[i]);
+  getImageURLs(imageArray: any): void {
+    this.images = [];
+    for (let i = 0; i < imageArray.length; i++) {
+      this.images.push(Constants.getFileUploadLocation() + imageArray[i]);
     }
   }
 }

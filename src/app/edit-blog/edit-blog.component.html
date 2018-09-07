@@ -24,12 +24,16 @@
     </div>
   </form>
 
-  <div *ngFor="let img of images" class="image">
-    <div>
-      <img [src]='img' alt='no image found' width="150px" height="100px">
-    </div>
-    <div>
-      <button class="btn btn-danger btn-sm edit" (click)="deleteImage(img)">Delete</button>
+  <div>
+    <div *ngFor="let img of images" class="image">
+      <div>
+        <img [src]='img' alt='no image found' width="150px" height="100px">
+      </div>
+      <div>
+        <a (click)="deleteImage(img)">
+          <img class="edit" src="assets/trash-icon.png">
+        </a>
+      </div>
     </div>
   </div>
   <div class="form-group">
@@ -63,7 +67,7 @@
       </div>
     </form>
     <div *ngIf='uploaded'>
-        <p>Updated succesfully</p>
-      </div>
+      <p>Updated succesfully</p>
+    </div>
   </div>
 </div>
