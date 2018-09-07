@@ -17,7 +17,7 @@ export class SubscribeToBlogComponent implements OnInit, OnDestroy {
   form: FormGroup;
   submitted = false;
   user_is_logged_in = false;
-  checking;
+  checking_login;
   success: String = '';
   data;
   error;
@@ -32,14 +32,14 @@ export class SubscribeToBlogComponent implements OnInit, OnDestroy {
       'email': new FormControl('', [Validators.required, Validators.email])
     });
     setInterval(() => {
-      this.checking = this.checkLoginStatus.checkIfUserIsLoggedIn();
+      this.checking_login = this.checkLoginStatus.checkIfUserIsLoggedIn();
       this.user_is_logged_in = this.checkLoginStatus.returnCheckLoginStatus();
     }, 100);
   }
 
   ngOnDestroy() {
-    if (this.checking) {
-      clearInterval(this.checking);
+    if (this.checking_login) {
+      clearInterval(this.checking_login);
     }
   }
 

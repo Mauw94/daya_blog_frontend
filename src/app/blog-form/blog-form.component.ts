@@ -25,7 +25,7 @@ export class BlogFormComponent implements OnInit {
 
   constructor(private blogService: BlogService) {
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-      let image = JSON.parse(response);
+      const image = JSON.parse(response);
       this.fileName = image['uploadname'];
       if (this.fileName != null) {
         this.uploaded = true;
