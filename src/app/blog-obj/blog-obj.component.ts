@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BlogModel } from '../models/blog';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-blog-obj',
@@ -9,9 +10,17 @@ import { BlogModel } from '../models/blog';
 export class BlogObjComponent implements OnInit {
 
   @Input() blog: BlogModel;
-  constructor() { }
+  loggedIn = false;
+  constructor(private auth: AuthService) { }
 
   ngOnInit() {
+    this.checkLoginStatus();
+  }
+
+  checkLoginStatus(): void {
+    if (this.auth.isLoggedIn()) {
+      this.loggedIn = true;
+    }
   }
 
 }
