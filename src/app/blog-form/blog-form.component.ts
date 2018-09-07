@@ -18,18 +18,20 @@ export class BlogFormComponent implements OnInit {
   error: String = '';
   uploader: FileUploader = new FileUploader({ url: Constants.getFileUploadUri() });
   fileToUpload: File = null;
-  fileName: string = null;
-  imagepath: string = null;
+  fileName: string[] = [];
+  imagepath: String[] = [];
+  imageToShow: String = null;
   attachmentList: any = [];
   uploaded = false;
+  counter = 0;
 
   constructor(private blogService: BlogService) {
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       const image = JSON.parse(response);
-      this.fileName = image['uploadname'];
+      this.fileName.push(image['uploadname']);
       if (this.fileName != null) {
         this.uploaded = true;
-        this.imagepath = Constants.getAPiUrl() + 'uploads/' + this.fileName;
+        this.imagepath.push(Constants.getFileUploadLocation() + this.fileName[this.counter]);
       }
       this.attachmentList.push(JSON.parse(response));
     };
@@ -63,6 +65,7 @@ export class BlogFormComponent implements OnInit {
   private postBlog(form) {
     if (form.value.content && form.value.date && form.value.title != null) {
       const blog: BlogModel = new BlogModel(
+        '',
         form.value.content,
         form.value.date,
         form.value.title,

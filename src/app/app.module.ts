@@ -19,6 +19,7 @@ import { AuthService } from './services/auth.service';
 import { TokenInterceptor } from './auth/token.interceptor';
 import { FileSelectDirective } from '../../node_modules/ng2-file-upload';
 import { AuthGuard } from './services/guard.service';
+import { EditBlogComponent } from './edit-blog/edit-blog.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AuthGuard } from './services/guard.service';
     LoginComponent,
     CreateAccountComponent,
     SubscribeToBlogComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    EditBlogComponent
   ],
   imports: [
     BrowserModule,

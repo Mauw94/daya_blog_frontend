@@ -9,6 +9,7 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { BlogFormComponent } from './blog-form/blog-form.component';
 import { SubscribeToBlogComponent } from './subscribe-to-blog/subscribe-to-blog.component';
 import { AuthGuard } from './services/guard.service';
+import { EditBlogComponent } from './edit-blog/edit-blog.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -19,7 +20,8 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'create', component: CreateAccountComponent },
     { path: 'postblog', component: BlogFormComponent, canActivate: [AuthGuard] },
-    { path: 'subscribe', component: SubscribeToBlogComponent }
+    { path: 'subscribe', component: SubscribeToBlogComponent },
+    { path: 'editblog/:id', component: EditBlogComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

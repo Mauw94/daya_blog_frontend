@@ -30,20 +30,46 @@ export class BlogService {
     }));
   }
 
+  updateBlog(blog: any) {
+    return this.http.post(Constants.getAPiUrl() + 'updateblog', blog);
+  }
+
   uploadImage(formDate: FormData) {
     return this.http.post(Constants.getAPiUrl() + 'blogimage', formDate);
+  }
+
+  getBlogById(id: any): Observable<BlogModel> {
+    return this.http.get(Constants.getAPiUrl() + 'blogs/' + id).pipe(map(res =>
+      this.parseSingleObjectData(res)));
   }
 
   parseData(json: any): BlogModel[] {
     return Object.keys(json).map(key => {
       const blog = new BlogModel(
+        json[key]._id,
         json[key].content,
         json[key].date,
         json[key].title,
-        Constants.getAPiUrl() + 'uploads/' + json[key].image
+        json[key].image
       );
       return blog;
     });
+  }
+
+  parseSingleObjectData(json: any): BlogModel {
+    const blog = new BlogModel(
+      json['_id']._id,
+      json['content'].content,
+      json['date'].date,
+      json['title'].title,
+      json['title'].image
+    );
+    blog.id = json['_id'];
+    blog.content = json['content'];
+    blog.date = json['date'];
+    blog.title = json['title'];
+    blog.image = json['image'];
+    return blog;
   }
 
 }

@@ -1,0 +1,32 @@
+<div class="container">
+
+  <form [formGroup]="form" (ngSubmit)="submit(form)" class="card">
+    <h4>Edit blog</h4>
+    <div class="form-group">
+      <label for="blog-date">Date: </label>
+      <input id="blog-date" class="form-control" type="date" name="date" formControlName="date">
+    </div>
+    <div class="form-group">
+      <label for="blog-title">Title: </label>
+      <input type="text" class="form-control" name="title" id="blog-title" formControlName="title">
+    </div>
+    <div class="form-group">
+      <label for="blog-contnet">Blog text: </label>
+      <textarea name="" id="" cols="30" rows="10" class="form-control" id="blog-contnet" rows="4" cols="52" name="content"
+        formControlName="content" contenteditable="true"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="blog-button"></label>
+      <input id="blog-button" class="btn btn-primary" type="submit" name="submit" value="Submit">
+    </div>
+    <div *ngIf='submitted'>
+      <p>Submitted succesfully</p>
+    </div>
+  </form>
+
+  <div *ngFor="let img of images" class="image">
+    <img [src]='img' alt='no image found' width="150px" height="100px">
+    <button class="btn-primary btn-sm">Change</button>
+    <button class="btn-primary btn-sm">Delete</button>
+  </div>
+</div>

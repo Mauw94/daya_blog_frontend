@@ -22,7 +22,6 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     if (localStorage.getItem('currentUser') != null) {
-      console.log('logged in');
       return true;
     } else {
       return false;

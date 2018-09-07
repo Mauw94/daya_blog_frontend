@@ -5,12 +5,12 @@
     {{blog.content}}
   </p>
   <div class="image">
-    <img [src]='blog.image' alt='No image found.' width="250px" height="250px">
+    <img [src]='image' alt='No image found.' width="250px" height="250px">
     <br>
   </div>
   <div class="right">
     <div *ngIf="loggedIn">
-      <button class="btn-secondary btn-sm">Edit blog</button>
+      <button class="btn-secondary btn-sm" (click)="editBlog()">Edit blog</button>
     </div>
   </div>
   <hr>
