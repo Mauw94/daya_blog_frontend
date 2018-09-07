@@ -1,29 +1,30 @@
 <div class="container">
-  <h1>{{blog.title}}</h1>
-  <p style="font-size: 12px">{{blog.date}}</p>
-  <p>
-    {{blog.content}}
-  </p>
-  <div *ngIf="!showmore" class="image">
-    <img [src]='image' alt='No image found.' width="150px" height="100px">
-    <br>
-    <a (click)="showMore()">Show more</a>
-  </div>
-
-  <div *ngIf="showmore">
-    <div *ngFor="let img of images" class="more-images">
-      <img [src]='img' alt="No image found." width="270px" height="180px">
+  <div class="card">
+    <h1>{{blog.title}}</h1>
+    <p style="font-size: 12px">{{blog.date}}</p>
+    <p>
+      {{blog.content}}
+    </p>
+    <div *ngIf="!showmore" class="image">
+      <img [src]='image' alt='No image found.' width="150px" height="100px">
       <br>
+      <a (click)="showMore()">Show more</a>
     </div>
-    <div>
-      <a (click)="hide()">Hide</a>
-    </div>
-  </div>
 
-  <div class="right">
-    <div *ngIf="loggedIn">
-      <button class="btn-secondary btn-sm" (click)="editBlog()">Edit blog</button>
+    <div *ngIf="showmore">
+      <div *ngFor="let img of images" class="more-images">
+        <img [src]='img' alt="No image found." width="270px" height="180px">
+        <br>
+      </div>
+      <div>
+        <a (click)="hide()">Hide</a>
+      </div>
+    </div>
+
+    <div class="right">
+      <div *ngIf="loggedIn">
+        <button class="btn-secondary btn-sm" (click)="editBlog()">Edit blog</button>
+      </div>
     </div>
   </div>
-  <hr>
 </div>
