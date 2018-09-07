@@ -13,13 +13,17 @@ export class BlogObjComponent implements OnInit {
 
   @Input() blog: BlogModel;
   loggedIn = false;
+  showmore = false;
   image: string = null;
+  images: string[] = [];
 
   constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
+    this.showmore = false;
     this.checkLoginStatus();
     this.getFirstImage();
+    this.getImageURLs();
   }
 
   editBlog(): void {
@@ -28,6 +32,19 @@ export class BlogObjComponent implements OnInit {
 
   getFirstImage(): void {
     this.image = Constants.getFileUploadLocation() + this.blog.image[0];
+  }
+
+  getImageURLs(): void {
+    for (let i = 0; i < this.blog.image.length; i++) {
+      this.images.push(Constants.getFileUploadLocation() + this.blog.image[i]);
+    }
+  }
+
+  showMore(): void {
+    this.showmore = true;
+  }
+  hide(): void {
+    this.showmore = false;
   }
 
   checkLoginStatus(): void {

@@ -4,10 +4,22 @@
   <p>
     {{blog.content}}
   </p>
-  <div class="image">
-    <img [src]='image' alt='No image found.' width="250px" height="250px">
+  <div *ngIf="!showmore" class="image">
+    <img [src]='image' alt='No image found.' width="150px" height="100px">
     <br>
+    <a (click)="showMore()">Show more</a>
   </div>
+
+  <div *ngIf="showmore">
+    <div *ngFor="let img of images" class="more-images">
+      <img [src]='img' alt="No image found." width="270px" height="180px">
+      <br>
+    </div>
+    <div>
+      <a (click)="hide()">Hide</a>
+    </div>
+  </div>
+
   <div class="right">
     <div *ngIf="loggedIn">
       <button class="btn-secondary btn-sm" (click)="editBlog()">Edit blog</button>
