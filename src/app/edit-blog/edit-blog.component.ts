@@ -65,7 +65,7 @@ export class EditBlogComponent implements OnInit {
       this.uploaded = true;
     });
     if (this.deleted) {
-      //
+      window.location.reload();
     }
   }
 

@@ -35,15 +35,12 @@ export class BlogService {
       console.log(res)));
   }
 
-  uploadImage(formDate: FormData) {
-    return this.http.post(Constants.getAPiUrl() + 'blogimage', formDate);
-  }
-
   getBlogById(id: any): Observable<BlogModel> {
     return this.http.get(Constants.getAPiUrl() + 'blogs/' + id).pipe(map(res =>
       this.parseSingleObjectData(res)));
   }
 
+  // not yet implemented
   deleteBlogById(blog: any) {
     return this.http.post(Constants.getAPiUrl() + 'deleteblog', blog).pipe(map(res =>
       console.log(res)));
