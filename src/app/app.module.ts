@@ -20,6 +20,7 @@ import { TokenInterceptor } from './auth/token.interceptor';
 import { FileSelectDirective } from '../../node_modules/ng2-file-upload';
 import { AuthGuard } from './services/guard.service';
 import { EditBlogComponent } from './edit-blog/edit-blog.component';
+import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { EditBlogComponent } from './edit-blog/edit-blog.component';
     CreateAccountComponent,
     SubscribeToBlogComponent,
     FileSelectDirective,
-    EditBlogComponent
+    EditBlogComponent,
+    BlogDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -30,6 +30,10 @@ export class BlogObjComponent implements OnInit {
     this.router.navigate(['/editblog', this.blog.id]);
   }
 
+  blogDetails(): void {
+    this.router.navigate(['/blogdetail', this.blog.id]);
+  }
+
   getFirstImage(): void {
     this.image = Constants.getFileUploadLocation() + this.blog.image[0];
   }
