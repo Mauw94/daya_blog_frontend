@@ -97,6 +97,14 @@ export class EditBlogComponent implements OnInit {
     }
   }
 
+  deleteBlog(): void {
+    if (confirm('Are you sure you want to delete this blog?')) {
+      this.blogService.deleteBlogById(this.blog.id).subscribe((data) => console.log(data));
+    } else {
+      return;
+    }
+  }
+
   getBlog(): void {
     this.blogService.getBlogById(this.route.snapshot.paramMap.get('id'))
       .subscribe((data) => {
