@@ -21,19 +21,22 @@ export class HomeComponent implements OnInit, OnDestroy {
   blogOneImage: string = null;
   blogTwoImage: string = null;
   blogThreeImage: string = null;
+  fetchedLastUploadedBlogs = false;
 
   constructor(private blogService: BlogService) {
   }
 
   ngOnInit() {
-    // this needs some serious fixing, pls send a God.
+    this.fetchedLastUploadedBlogs = false;
     this.lastThreeBlogs();
-    this.slideIndex = 1;
-    this.slideIndexHotspot = 0;
-    this.showSlides(this.slideIndex);
-    this.hotspotSlideShow();
-    this.slideInterval = setInterval(() => {
+    setTimeout(() => {
+      this.slideIndex = 1;
+      this.slideIndexHotspot = 0;
+      this.showSlides(this.slideIndex);
       this.hotspotSlideShow();
+      this.slideInterval = setInterval(() => {
+        this.hotspotSlideShow();
+      }, 2000);
     }, 2000);
   }
 
@@ -45,7 +48,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   plusSlides(i): void {
     this.showSlides(this.slideIndex += i);
-    console.log('clicked next slide');
   }
 
   currentSlide(n): void {
@@ -90,6 +92,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.blogOneImage = Constants.getFileUploadLocation() + data[0].image[0];
         this.blogTwoImage = Constants.getFileUploadLocation() + data[1].image[0];
         this.blogThreeImage = Constants.getFileUploadLocation() + data[2].image[0];
+        this.fetchedLastUploadedBlogs = true;
       }
     });
   }
