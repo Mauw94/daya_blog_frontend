@@ -18,6 +18,10 @@ export class BlogService {
     return this.http.get(Constants.getAPiUrl() + 'blogs').pipe(map(res => this.parseData(res)));
   }
 
+  getLastThreeBlogs(): Observable<BlogModel[]> {
+    return this.http.get(Constants.getAPiUrl() + 'lastthree').pipe(map(res => this.parseData(res)));
+  }
+
   saveBlog(blog: any) {
     return this.http.post(Constants.getAPiUrl() + 'blogs', blog).pipe(map((res: Response) => {
       if (res) {

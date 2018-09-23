@@ -28,16 +28,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // this needs some serious fixing, pls send a God.
     this.lastThreeBlogs();
-    setTimeout(() => {
-      this.slideIndex = 1;
-      this.slideIndexHotspot = 0;
-      this.showSlides(this.slideIndex);
+    this.slideIndex = 1;
+    this.slideIndexHotspot = 0;
+    this.showSlides(this.slideIndex);
+    this.hotspotSlideShow();
+    this.slideInterval = setInterval(() => {
       this.hotspotSlideShow();
-      this.slideInterval = setInterval(() => {
-        this.hotspotSlideShow();
-      }, 2000);
     }, 2000);
-
   }
 
   ngOnDestroy(): void {
@@ -84,16 +81,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   lastThreeBlogs() {
-    this.blogService.getBlogs().subscribe((data) => {
+    this.blogService.getLastThreeBlogs().subscribe((data) => {
       if (data != null) {
         const len = data.length;
-        this.blogOne = data[len - 1];
-        this.blogTwo = data[len - 2];
-        this.blogThree = data[len - 3];
-        this.blogOneImage = Constants.getFileUploadLocation() + data[len - 1].image[0];
-        this.blogTwoImage = Constants.getFileUploadLocation() + data[len - 2].image[0];
-        this.blogThreeImage = Constants.getFileUploadLocation() + data[len - 3].image[0];
+        this.blogOne = data[0];
+        this.blogTwo = data[1];
+        this.blogThree = data[2];
+        this.blogOneImage = Constants.getFileUploadLocation() + data[0].image[0];
+        this.blogTwoImage = Constants.getFileUploadLocation() + data[1].image[0];
+        this.blogThreeImage = Constants.getFileUploadLocation() + data[2].image[0];
       }
     });
   }
+
 }
