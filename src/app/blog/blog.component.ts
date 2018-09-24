@@ -21,6 +21,7 @@ export class BlogComponent implements OnInit {
     this.blogService.getBlogs().subscribe((data) => {
       if (data != null) {
         this.blogList = data;
+        this.blogList.reverse();
       }
     });
   }
