@@ -64,9 +64,9 @@ export class EditBlogComponent implements OnInit {
     this.blogService.updateBlog(blog).subscribe((data) => {
       this.uploaded = true;
     });
-    if (this.deleted) {
-      window.location.reload();
-    }
+    // if (this.deleted) {
+    //   window.location.reload();
+    // }
   }
 
   updateBlogContent(form): void {
