@@ -44,9 +44,9 @@ export class BlogService {
       this.parseSingleObjectData(res)));
   }
 
-  // not yet implemented
-  deleteBlogById(blog: any) {
-    return this.http.post(Constants.getAPiUrl() + 'deleteblog', blog).pipe(map(res =>
+  // need to get rid of the console.logs in this file and the edit.blog.component for the delete blog
+  deleteBlogById(id: any) {
+    return this.http.get(Constants.getAPiUrl() + 'deleteblog/' + id).pipe(map(res =>
       console.log(res)));
   }
 

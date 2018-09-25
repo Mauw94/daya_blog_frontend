@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogService } from '../services/blog.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BlogModel } from '../models/blog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Constants } from '../services/constants';
@@ -24,7 +24,7 @@ export class EditBlogComponent implements OnInit {
   uploader: FileUploader = new FileUploader({ url: Constants.getFileUploadUri() });
   fileToUpload: File = null;
 
-  constructor(private blogService: BlogService, private route: ActivatedRoute) {
+  constructor(private blogService: BlogService, private route: ActivatedRoute, private router: Router) {
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       const image = JSON.parse(response);
       this.blog.image.push(image['uploadname']);
@@ -99,7 +99,10 @@ export class EditBlogComponent implements OnInit {
 
   deleteBlog(): void {
     if (confirm('Are you sure you want to delete this blog?')) {
-      this.blogService.deleteBlogById(this.blog.id).subscribe((data) => console.log(data));
+      console.log(this.blog.id);
+      this.blogService.deleteBlogById(this.blog.id).subscribe((data) => {
+        this.router.navigate(['blog']);
+      });
     } else {
       return;
     }
