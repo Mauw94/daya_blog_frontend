@@ -99,7 +99,6 @@ export class EditBlogComponent implements OnInit {
 
   deleteBlog(): void {
     if (confirm('Are you sure you want to delete this blog?')) {
-      console.log(this.blog.id);
       this.blogService.deleteBlogById(this.blog.id).subscribe((data) => {
         this.router.navigate(['blog']);
       });

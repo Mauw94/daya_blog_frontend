@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { BlogService } from '../services/blog.service';
 import { BlogModel } from '../models/blog';
 
@@ -25,5 +25,4 @@ export class BlogComponent implements OnInit {
       }
     });
   }
-
 }
