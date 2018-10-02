@@ -11,6 +11,9 @@ import { SubscribeToBlogComponent } from './subscribe-to-blog/subscribe-to-blog.
 import { AuthGuard } from './services/guard.service';
 import { EditBlogComponent } from './edit-blog/edit-blog.component';
 import { BlogDetailComponent } from './blog-detail/blog-detail.component';
+import { BeforeComponent } from './before/before.component';
+import { ThereComponent } from './there/there.component';
+import { HotspotsComponent } from './hotspots/hotspots.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -23,7 +26,10 @@ const routes: Routes = [
     { path: 'postblog', component: BlogFormComponent, canActivate: [AuthGuard] },
     { path: 'subscribe', component: SubscribeToBlogComponent },
     { path: 'editblog/:id', component: EditBlogComponent, canActivate: [AuthGuard] },
-    { path: 'blogdetail/:id', component: BlogDetailComponent, canActivate: [AuthGuard] }
+    { path: 'blogdetail/:id', component: BlogDetailComponent, canActivate: [AuthGuard] },
+    { path: 'before', component: BeforeComponent },
+    { path: 'there', component: ThereComponent },
+    { path: 'hotspots', component: HotspotsComponent }
 ];
 
 @NgModule({

@@ -21,6 +21,9 @@ import { FileSelectDirective } from '../../node_modules/ng2-file-upload';
 import { AuthGuard } from './services/guard.service';
 import { EditBlogComponent } from './edit-blog/edit-blog.component';
 import { BlogDetailComponent } from './blog-detail/blog-detail.component';
+import { BeforeComponent } from './before/before.component';
+import { ThereComponent } from './there/there.component';
+import { HotspotsComponent } from './hotspots/hotspots.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { BlogDetailComponent } from './blog-detail/blog-detail.component';
     SubscribeToBlogComponent,
     FileSelectDirective,
     EditBlogComponent,
-    BlogDetailComponent
+    BlogDetailComponent,
+    BeforeComponent,
+    ThereComponent,
+    HotspotsComponent
   ],
   imports: [
     BrowserModule,
