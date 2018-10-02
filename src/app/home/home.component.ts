@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   slideIndexHotspot = 0;
   slideInterval;
   blogList: BlogModel[] = [];
+  lastThreeBlogList: BlogModel[] = [];
   blogOne: BlogModel;
   blogTwo: BlogModel;
   blogThree: BlogModel;
@@ -28,7 +29,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.fetchedLastUploadedBlogs = false;
-    this.lastThreeBlogs();
+    this.fetchLastThreeBlogs();
     setTimeout(() => {
       this.slideIndex = 1;
       this.slideIndexHotspot = 0;
@@ -82,17 +83,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     (slides[this.slideIndexHotspot - 1] as HTMLElement).style.display = 'block';
   }
 
-  lastThreeBlogs() {
+  fetchLastThreeBlogs() {
     this.blogService.getLastThreeBlogs().subscribe((data) => {
       if (data != null) {
-        const len = data.length;
-        this.blogOne = data[0];
-        this.blogTwo = data[1];
-        this.blogThree = data[2];
-        this.blogOneImage = Constants.getFileUploadLocation() + data[0].image[0];
-        this.blogTwoImage = Constants.getFileUploadLocation() + data[1].image[0];
-        this.blogThreeImage = Constants.getFileUploadLocation() + data[2].image[0];
-        this.fetchedLastUploadedBlogs = true;
+        for (let i = 0; i < data.length; i++) {
+          this.lastThreeBlogList.push(new BlogModel(data[i].id, data[i].content, data[i].date, data[i].title, data[i].image));
+        }
       }
     });
   }
