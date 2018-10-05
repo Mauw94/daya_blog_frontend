@@ -1,4 +1,7 @@
 <div class="container">
+    <div *ngIf="!fetchedLastUploadedBlogs" class="slideshow-container">
+        Loading..
+    </div>
     <div *ngIf='fetchedLastUploadedBlogs' class="slideshow-container">
         <!-- Full-width images with number and caption text -->
         
