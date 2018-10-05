@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   blogTwoImage: string = null;
   blogThreeImage: string = null;
   fetchedLastUploadedBlogs = false;
+  imageUploadUrl = Constants.getFileUploadLocation();
 
   constructor(private blogService: BlogService) {
   }
@@ -89,6 +90,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         for (let i = 0; i < data.length; i++) {
           this.lastThreeBlogList.push(new BlogModel(data[i].id, data[i].content, data[i].date, data[i].title, data[i].image));
         }
+        this.fetchedLastUploadedBlogs = true;
       }
     });
   }
